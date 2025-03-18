@@ -1,27 +1,12 @@
+#include "funciones.h"
 #include <iostream>
-#include <chrono>
 
-bool miProcesoAMedir(const char* str1, const char* str2){
-   if(*str1 != *str2){
-      return false;
-   }
-    if(*str1 == '\0' && *str2 == '\0'){
-        return true;
-    }       
-    return miProcesoAMedir(str1+1, str2+1);
-}
-
-/*Usé const char* en lugar de std::string porque trabajar con punteros a caracteres permite realizar la comparación de forma más eficiente. En las funciones con const char* no es necesario copiar ni crear nuevos objetos en cada llamada recursiva, como podría ocurrir con std::string. Esto reduce el tiempo de ejecución y el consumo de memoria, especialmente con textos largos. Además, const char* permite manipular directamente la dirección de memoria de los caracteres, haciendo que el paso recursivo sólo sea avanzar el puntero (str1 + 1).*/
-
-constexpr bool miProcesoAMedir2(const char* str1, const char* str2){
-    return *str1 == *str2 ? (*str1 == '\0' && *str2 == '\0' ? true : miProcesoAMedir2(str1+1, str2+1)) : false;
-}
-
-constexpr char texto_uno[] = "Hola tengo muchos caracteres pero en total son exactamente 64!!!";
-constexpr char texto_dos[] = "Hola tengo muchos caracteres pero en total son exactamente 64!!!\n";
-
-constexpr bool resultado_compilacion = miProcesoAMedir2(texto_uno, texto_dos);
 int main(){
+    
+    constexpr char texto_uno[] = "Hola tengo muchos caracteres pero en total son exactamente 64!!\n";
+    constexpr char texto_dos[] = "Hola tengo muchos caracteres pero en total son exactamente 64!!\n";
+
+    constexpr bool resultado_compilacion = miProcesoAMedir2(texto_uno, texto_dos);
 
     std::cout << "Texto uno: " << texto_uno << std::endl;
     std::cout << "Texto dos: " << texto_dos << std::endl;
