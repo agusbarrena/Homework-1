@@ -59,6 +59,8 @@ void simula_RuntimeError(){
 
     *ptr = 100;
 }
+/*Para simular un Runtime Error, creé esta función que intenta acceder a la memoria de un puntero nulo. Además registra el archivo y la línea en la cual se produjo el error. También se genera un error escribiendo en el puntero nulo (*ptr = 100;), lo cual 
+causaría un fallo por acceso inválido de memoria (segmentation fault), aunque con el exit(1) ya debería frenarse la ejecución.*/
 
 void menu_interactivo(){
     int opcion;
